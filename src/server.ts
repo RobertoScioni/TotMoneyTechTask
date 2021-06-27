@@ -1,7 +1,20 @@
 import express from "express"
-const app = express()
+import { Sequelize, DataTypes } from "sequelize"
+
+import { reservationRouter } from "./services/reservations"
+import { userRouter } from "./services/users"
+
+const server = express()
+
+const sequelize = new Sequelize(
+	"postgres://postgres:hpscanjet2300c@localhost:5432/totMoney"
+)
+
 const PORT = 8000
-app.get("/", (req, res) => res.send("Express + TypeScript Server"))
-app.listen(PORT, () => {
+server.use(express.json())
+server.get("/", (req, res) => res.send("Express + TypeScript Server"))
+server.use("/users", userRouter)
+server.use("/reservations", reservationRouter)
+server.listen(PORT, () => {
 	console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`)
 })
