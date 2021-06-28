@@ -12,7 +12,7 @@ userRouter.post("/", async (req, res, next) => {
 	} catch (error) {
 		console.error(req.body)
 		console.error(error)
-		res.send("error")
+		res.status(405).send("error")
 	}
 })
 

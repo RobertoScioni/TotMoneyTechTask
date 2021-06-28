@@ -1,0 +1,146 @@
+swagger: "2.0"
+info:
+  description: 'Basic API to manage client and reservations for a restaurant'
+  version: "1.0.0"
+  title: "RestaurantBackend"
+tags:
+  
+  - name: "Users"
+    description: "Operations about users"
+    externalDocs:
+      description: "Find out more about our store"
+      url: "http://swagger.io"
+  - name: "Reservations"
+    description: "Operations about users"
+    externalDocs:
+      description: "Find out more about our store"
+      url: "http://swagger.io"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /users:
+    post:
+      tags:
+        - "Users"
+      summary: "Registers a new user"
+      consumes:
+        - "application/json"
+      produces:
+        - "ApiResponse"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "User to register"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "405":
+          description: "Invalid input"
+    get:
+      tags:
+        - "Users"
+      summary: "Lists registered users"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        "404":
+          description: "not found"
+
+  /reservations:
+    post:
+      tags:
+        - "Reservations"
+      summary: "Makes a reservation"
+      consumes:
+        - "application/json"
+      produces:
+        - "ApiResponse"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "time seats and mail for the reservation"
+          required: true
+          schema:
+            $ref: "#/definitions/Reservation"
+      responses:
+        "405":
+          description: "Invalid input"
+
+    get:
+      tags:
+        - "Reservations"
+      summary: "Lists registered users"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Optional limits to the seatch"
+          required: true
+          schema:
+            $ref: "#/definitions/Interval"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        "404":
+          description: "not found"
+
+definitions:
+  Reservation:
+    type: "object"
+    properties:
+      seats:
+        type: "integer"
+        format: "int32"
+      time:
+        type: "string"
+        format: "date-time"
+      email:
+        type: "string"
+        format: "email"
+  User:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      email:
+        type: "string"
+        format: "email"
+    xml:
+      name: "User"
+  Interval:
+    type: "object"
+    properties:
+      startDate:
+        type: "string"
+        format: "date-time"
+      endDate:
+        type: "string"
+        format: "date-time"
+    xml:
+      name: "User"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

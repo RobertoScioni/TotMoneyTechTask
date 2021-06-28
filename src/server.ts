@@ -16,5 +16,5 @@ server.get("/", (req, res) => res.send("Express + TypeScript Server"))
 server.use("/users", userRouter)
 server.use("/reservations", reservationRouter)
 server.listen(PORT, () => {
-	console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`)
+	console.log(`Server is running at https://localhost:${PORT}`)
 })
