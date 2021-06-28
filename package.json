@@ -5,12 +5,14 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc -p .",
 		"dev": "nodemon -r dotenv/config ./src/server.ts"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"dayjs": "^1.10.5",
+		"dotenv": "^10.0.0",
 		"express": "^4.17.1",
 		"pg": "^8.6.0",
 		"sequelize": "^6.6.4"
